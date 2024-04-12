@@ -15,6 +15,11 @@ public class StringCounter {
 
     public static int countOccurrence(List<String> stringList, String targetString) {
         int countOfMatches = 0;
+
+        if (stringList == null || targetString == null) {
+            return countOfMatches;
+        }
+
         for (String string : stringList) {
             if (string.equals(targetString)) {
                 countOfMatches++;

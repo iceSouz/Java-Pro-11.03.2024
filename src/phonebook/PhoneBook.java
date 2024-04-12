@@ -2,57 +2,50 @@ package phonebook;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 public class PhoneBook {
-    private List<Contact> contacts;
+    private List<Record> records;
 
     public PhoneBook() {
-        this.contacts = new ArrayList<>();
+        this.records = new ArrayList<>();
     }
 
-    public void add(Contact contact) {
-        if (contacts.contains(contact)) {
-            System.out.printf("The contact %s already exists in the phone book.\n", contact.getName());
-            return;
+    public boolean add(Record record) {
+        //Primitive implementation
+        for (Record contact : records) {
+            if (contact.getPhone().equals(record.getPhone())) {
+                System.out.println("This number(" + record.getPhone() + ") is already in use, so it cannot be added.");
+
+                return false;
+            }
         }
+        records.add(record);
 
-        contacts.add(contact);
+        return true;
     }
 
-    public Contact find(String name) {
-        for (Contact contact : contacts) {
-            if (contact.getName().equalsIgnoreCase(name)) {
-                return contact;
+    public Record find(String name) {
+        for (Record record : records) {
+            if (record.getName().equalsIgnoreCase(name)) {
+                return record;
             }
         }
 
         return null;
     }
 
-    public List<Contact> findAll(String name) {
-        List<Contact> contactsByName = new ArrayList<>();
-
-        for (Contact contact : contacts) {
-            if (contact.getName().equalsIgnoreCase(name)) {
-                contactsByName.add(contact);
+    public List<Record> findAll(String name) {
+        List<Record> allRecordsByName = new ArrayList<>();
+        for (Record record : records) {
+            if (record.getName().equalsIgnoreCase(name)) {
+                allRecordsByName.add(record);
             }
         }
 
-        if (!contactsByName.isEmpty()) {
-            return contactsByName;
+        if (!allRecordsByName.isEmpty()) {
+            return allRecordsByName;
         }
 
         return null;
-    }
-
-    @Override
-    public String toString() {
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (Contact contact : contacts) {
-            stringJoiner.add(contact.toString());
-        }
-
-        return stringJoiner.toString();
     }
 }

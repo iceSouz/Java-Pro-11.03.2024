@@ -11,17 +11,7 @@ public class PhoneBook {
     }
 
     public boolean add(Record record) {
-        //Primitive implementation
-        for (Record contact : records) {
-            if (contact.getPhone().equals(record.getPhone())) {
-                System.out.println("This number(" + record.getPhone() + ") is already in use, so it cannot be added.");
-
-                return false;
-            }
-        }
-        records.add(record);
-
-        return true;
+        return records.add(record);
     }
 
     public Record find(String name) {

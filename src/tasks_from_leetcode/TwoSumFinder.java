@@ -3,14 +3,19 @@ package tasks_from_leetcode;
 
 public class TwoSumFinder {
     public static int[] twoSum(int[] nums, int target) {
-        for (int i = 0; i < nums.length - 1; i++) {
-            int sum = nums[i] + nums[i + 1];
+        int[] result = new int[2];
 
-            if (sum == target) {
-                return new int[]{i, i + 1};
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                int sum = nums[i] + nums[j];
+
+                if (sum == target) {
+                    result[0] = i;
+                    result[1] = j;
+                }
             }
         }
 
-        return null;
+        return result;
     }
 }

@@ -1,16 +1,15 @@
 package tasks_from_leetcode;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class ArrayDuplicateChecker {
-
     public static boolean containsDuplicate(int[] nums) {
-        Arrays.sort(nums);
-
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] == nums[i + 1]) {
+        Set<Integer> uniqueNums = new HashSet<>();
+        for (int num : nums) {
+            if (uniqueNums.contains(num)) {
                 return true;
             }
+            uniqueNums.add(num);
         }
 
         return false;

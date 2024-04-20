@@ -1,13 +1,18 @@
 package exceptions;
 
 public class ArrayValueCalculator {
+    private static final String ARRAY_SIZE_EXCEPTION = "Array length should be 4, but the input array length is ";
     public static int doCalc(String[][] inputData) {
-        checkArraySize(inputData.length, 4);
+        if (inputData.length != 4) {
+            throw new ArraySizeException(ARRAY_SIZE_EXCEPTION + inputData.length);
+        }
 
         int sum = 0;
 
         for (int i = 0; i < inputData.length; i++) {
-            checkArraySize(inputData[i].length, 4);
+            if (inputData[i].length != 4) {
+                throw new ArraySizeException(ARRAY_SIZE_EXCEPTION + inputData[i].length);
+            }
 
             for (int j = 0; j < inputData[i].length; j++) {
                 try {
@@ -21,11 +26,5 @@ public class ArrayValueCalculator {
         }
 
         return sum;
-    }
-
-    private static void checkArraySize(int arrayLength, int expectedSize) {
-        if (arrayLength != expectedSize) {
-            throw new ArraySizeException("Array length should be 4, but the input array length is " + arrayLength);
-        }
     }
 }

@@ -13,7 +13,7 @@ public class CalculatorTester {
             int calcSum = ArrayValueCalculator.doCalc(ints);
             System.out.println("calcSum = " + calcSum);
         } catch (ArraySizeException | ArrayDataException exception) {
-            System.out.println("Error: " + exception.getMessage());
+            System.err.print("Error: " + exception.getMessage());
         }
     }
 }

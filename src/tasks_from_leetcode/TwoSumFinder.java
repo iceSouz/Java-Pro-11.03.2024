@@ -1,21 +1,20 @@
 package tasks_from_leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSumFinder {
     public static int[] twoSum(int[] nums, int target) {
-        int[] result = new int[2];
+        Map<Integer, Integer> numIndex = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                int sum = nums[i] + nums[j];
-
-                if (sum == target) {
-                    result[0] = i;
-                    result[1] = j;
-                }
+            int currentNum = nums[i];
+            if (numIndex.containsKey(target - currentNum)) {
+                return new int[]{numIndex.get(target - currentNum), i};
             }
+            numIndex.put(nums[i], i);
         }
 
-        return result;
+        return new int[0];
     }
 }

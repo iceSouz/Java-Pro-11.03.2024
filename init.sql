@@ -13,7 +13,7 @@ CREATE TABLE lessons (
 	homework_id INT UNIQUE,
 	CONSTRAINT fk_homework
 		FOREIGN KEY (homework_id)
-		REFERENCES homeworks.id
+		REFERENCES homeworks(id)
 );
 
 CREATE TABLE schedules (
@@ -28,8 +28,8 @@ CREATE TABLE lessons_schedules (
 	PRIMARY KEY (lesson_id, schedule_id),
 	CONSTRAINT fk_lesson
 		FOREIGN KEY (lesson_id)
-		REFERENCES lessons.id,
+		REFERENCES lessons(id),
 	CONSTRAINT fk_schedules
 		FOREIGN KEY (schedule_id)
-		REFERENCES schedules.id
+		REFERENCES schedules(id)
 );
